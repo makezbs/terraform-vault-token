@@ -10,7 +10,7 @@ resource "vault_token_auth_backend_role" "this" {
   orphan                 = var.orphan
   token_period           = var.token_period
   renewable              = var.renewable
-  token_explicit_max_ttl = var.explicit_max_ttl
+  token_explicit_max_ttl = var.token_explicit_max_ttl
   path_suffix            = var.path_suffix
 }
 
