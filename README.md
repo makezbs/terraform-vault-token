@@ -1,20 +1,27 @@
 # Vault AppRole Terraform module
 
-Terraform module which creates Vault AppRole
+Terraform module which creates Vault token
 
 ## Usage
 
 ```hcl
-module "approle" {
-  source = "github.com/makezbs/terraform-vault-approle.git"
+module "token" {
+  source = "github.com/makezbs/terraform-vault-token.git"
+  name   = "telemetry"
 
-  role_name   = "mySuperApp"
-  policy_name = "mySuperApp"
-  policy      = <<EOT
-  path "secret/data/mySuperApp" {
-    capabilities = ["read","list","update"]
+  policy = <<EOT
+  path "sys/metrics*" {
+    capabilities = ["read", "list"]
   }
   EOT
+
+  token_period     = "86400"
+  renewable        = true
+  explicit_max_ttl = "115200"
+  ttl              = "24h"
+  num_uses         = 0
+}
+
 }
 ```
 
