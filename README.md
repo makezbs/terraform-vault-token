@@ -21,8 +21,6 @@ module "token" {
   ttl              = "24h"
   num_uses         = 0
 }
-
-}
 ```
 
 ## Providers
